@@ -1,9 +1,9 @@
 package com.ksteach81.caculator;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,17 +30,25 @@ public class MainActivity extends AppCompatActivity {
             resultText.setText(String.valueOf(resultNumber));
         }
 
-        if(view.getId() == R.id.num_1_button){
+        Button getButton = findViewById(view.getId());
+
+        if(view.getId() == R.id.num_0_button
+                || view.getId() == R.id.num_1_button
+                || view.getId() == R.id.num_2_button
+                || view.getId() == R.id.num_3_button
+                || view.getId() == R.id.num_4_button
+                || view.getId() == R.id.num_5_button
+                || view.getId() == R.id.num_6_button
+                || view.getId() == R.id.num_7_button
+                || view.getId() == R.id.num_8_button
+                || view.getId() == R.id.num_9_button) {
             if(isFirstInput){
                 resultText.setTextColor(0xFF000000);
-                resultText.setText("1");
+                resultText.setText(getButton.getText().toString());
                 isFirstInput = false;
             }else {
-                resultText.append("1");
+                resultText.append(getButton.getText().toString());
             }
-
-        }else {
-
         }
     }
 }
