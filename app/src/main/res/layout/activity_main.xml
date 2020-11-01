@@ -279,7 +279,7 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/result"
+                android:id="@+id/result_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
