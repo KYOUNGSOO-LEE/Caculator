@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.all_clear_button:
                 resultNumber = 0;
                 operator = '+';
-                setClearText("0");
+                setClearText(CLEAR_INPUT_TEXT);
                 break;
 
             case R.id.clear_entry_button:
-                setClearText("0");
+                setClearText(CLEAR_INPUT_TEXT);
                 break;
 
             case R.id.back_space_button:
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     String subString = getResultText.substring(0, getResultText.length()-1);
                     resultText.setText(subString);
                 } else {
-                    setClearText("0");
+                    setClearText(CLEAR_INPUT_TEXT);
                 }
                 break;
 
@@ -70,25 +70,40 @@ public class MainActivity extends AppCompatActivity {
             resultText.setText(getButton.getText().toString());
             isFirstInput = false;
         } else {
-            resultText.append(getButton.getText().toString());
+            if(resultText.getText().toString().equals("0")){
+                Toast.makeText(getApplicationContext(), "0으로 시작하는 정수는 없습니다.", Toast.LENGTH_SHORT).show();
+                setClearText(CLEAR_INPUT_TEXT);
+            } else {
+                resultText.append(getButton.getText().toString());
+            }
         }
     }
 
     //연산자를 클릭하였을 때 실행되는 메소드
     public void operatorClick(View view){
-
         Button getButton = findViewById(view.getId());
 
         if(view.getId() == R.id.result_button){
-            resultNumber = intCal(resultNumber, Integer.parseInt(resultText.getText().toString()), operator);
-            resultText.setText(String.valueOf(resultNumber));
-            isFirstInput = true;
+            if(isFirstInput){
+                resultNumber = 0;
+                operator = '+';
+                setClearText(CLEAR_INPUT_TEXT);
+                // TODO: 2020-11-01 다음에 실수형 계산기 만들 때 윈도우 계산기처럼 =을 두 번 이상 누를 때 실행방법과 같이 구현할 것!
+            } else{
+                resultNumber = intCal(resultNumber, Integer.parseInt(resultText.getText().toString()), operator);
+                resultText.setText(String.valueOf(resultNumber));
+                isFirstInput = true;
+            }
         } else{
-            int lastNum = Integer.parseInt(resultText.getText().toString());
-            resultNumber = intCal(resultNumber, lastNum, operator);
-            operator = getButton.getText().toString().charAt(0);
-            resultText.setText(String.valueOf(resultNumber));
-            isFirstInput = true;
+            if(isFirstInput){
+                operator = getButton.getText().toString().charAt(0);
+            } else{
+                int lastNum = Integer.parseInt(resultText.getText().toString());
+                resultNumber = intCal(resultNumber, lastNum, operator);
+                operator = getButton.getText().toString().charAt(0);
+                resultText.setText(String.valueOf(resultNumber));
+                isFirstInput = true;
+            }
         }
     }
 
