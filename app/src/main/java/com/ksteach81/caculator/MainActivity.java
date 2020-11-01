@@ -25,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
         resultText=findViewById(R.id.result_text);
     }
 
+    //AC, CE, BE, decimal button click되었을 때 실행되는 메소드
     public void buttonClick(View view) {
-
-        Button getButton = findViewById(view.getId());
 
         switch (view.getId()){
             case R.id.all_clear_button:
@@ -51,16 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.decimal_button:
-                Log.e("buttonClick", "buttonClick "+getButton.getText().toString() + "버튼이 클릭되었습니다.");
-                break;
-
-            default:
-                Toast.makeText(getApplicationContext(), getButton.getText().toString() + "버튼이 클릭되었습니다.", Toast.LENGTH_LONG).show();
-                Log.e("buttonClick", "default "+getButton.getText().toString() + "버튼이 클릭되었습니다.");
                 break;
         }
     }
 
+    //입력된 숫자를 클리어 시켜 주는 메소드
+    public void setClearText(String clearText){
+        isFirstInput = true;
+        resultText.setTextColor(0xFF666666);
+        resultText.setText(clearText);
+    }
+
+    // 숫자 버튼이 클릭되었을 때 실행되는 메소드
     public void numButtonClick(View view){
         Button getButton = findViewById(view.getId());
 
@@ -73,25 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setClearText(String clearText){
-        isFirstInput = true;
-        resultText.setTextColor(0xFF666666);
-        resultText.setText(clearText);
-    }
-
-    public int intCal(int result, int lastNum, char operator){
-        if(operator == '+') {
-            result += lastNum;
-        } else if(operator == '-' ){
-            result -= lastNum;
-        } else if(operator == '/'){
-            result /= lastNum;
-        } else if(operator == '*'){
-            result *= lastNum;
-        }
-        return result;
-    }
-
+    //연산자를 클릭하였을 때 실행되는 메소드
     public void operatorClick(View view){
 
         Button getButton = findViewById(view.getId());
@@ -109,15 +92,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // 연산자를 계산하는 메소드
+    public int intCal(int result, int lastNum, char operator){
+        if(operator == '+') {
+            result += lastNum;
+        } else if(operator == '-' ){
+            result -= lastNum;
+        } else if(operator == '/'){
+            result /= lastNum;
+        } else if(operator == '*'){
+            result *= lastNum;
+        }
+        return result;
+    }
+
 }
-
-
-
-
-
-
-
-
 
 
 
