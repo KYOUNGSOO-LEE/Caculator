@@ -16,23 +16,24 @@
         android:orientation="vertical"
         android:padding="10dp">
         <ScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50">
             <TextView
+                android:id="@+id/result_operator_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1,234 + 1,234"
                 android:gravity="right"
                 android:textSize="20sp"/>
         </ScrollView>
 
         <TextView
-            android:id="@+id/result_text"
+            android:id="@+id/result_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"
-            android:text="1,234"
+            android:text="0"
             android:gravity="center_vertical|right"
             android:textSize="50sp"/>
 
@@ -41,9 +42,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@color/black" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#3F51B5" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,57 +61,44 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <Button
+            <ImageButton
                 android:id="@+id/all_clear_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="buttonClick"
-                android:text="AC"
-                android:textColor="@color/black"
-                android:textSize="30sp"/>
+                android:src="@drawable/ic_twotone_fiber_new_24"
+                android:scaleType="fitCenter"
+                android:tag="all_clear"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/clear_entry_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="buttonClick"
-                android:text="CE"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:src="@drawable/ic_baseline_clear_24"
+                android:scaleType="fitCenter"
+                android:tag="clear_entry"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/back_space_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="buttonClick"
-                android:text="BS"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_keyboard_backspace_24"
+                android:tag="back_space"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/division_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#A8AFD6"
-                android:onClick="operatorClick"
-                android:text="/"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_pie_chart_24"
+                android:padding="20dp"
+                android:backgroundTint="#FDECEC"
+                android:tag="/"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -120,60 +108,43 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_7_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="7"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_7_24"
+                android:tag="7"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_8_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="8"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_8_24"
+                android:tag="8"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_9_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="9"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_9_24"
+                android:tag="9"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/multiply_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#A8AFD6"
-                android:onClick="operatorClick"
-                android:text="*"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_clear_24"
+                android:padding="20dp"
+                android:backgroundTint="#FDECEC"
+                android:tag="*"/>
         </LinearLayout>
 
         <LinearLayout
@@ -183,60 +154,43 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_4_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="4"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_4_24"
+                android:tag="4"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_5_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="5"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_5_24"
+                android:tag="5"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_6_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="6"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_6_24"
+                android:tag="6"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/subtraction_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#A8AFD6"
-                android:onClick="operatorClick"
-                android:text="-"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_remove_24"
+                android:padding="20dp"
+                android:backgroundTint="#FDECEC"
+                android:tag="-"/>
         </LinearLayout>
 
         <LinearLayout
@@ -246,60 +200,43 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_1_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="1"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_1_24"
+                android:tag="1"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_2_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="2"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_2_24"
+                android:tag="2"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_3_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="3"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_3_24"
+                android:tag="3"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/addition_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#A8AFD6"
-                android:onClick="operatorClick"
-                android:text="+"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_outline_add_24"
+                android:padding="20dp"
+                android:backgroundTint="#FDECEC"
+                android:tag="+"/>
         </LinearLayout>
 
         <LinearLayout
@@ -309,45 +246,34 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <Button
+            <ImageButton
                 android:id="@+id/num_0_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="51.5"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="numButtonClick"
-                android:text="0"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:layout_weight="50"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_exposure_zero_24"
+                android:tag="0"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/decimal_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#EDEDE8"
-                android:onClick="buttonClick"
-                android:text="."
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_filter_tilt_shift_24"
+                android:tag="decimal"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/result_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="#A8AFD6"
-                android:onClick="operatorClick"
-                android:text="="
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twotone_drag_handle_24"
+                android:padding="20dp"
+                android:backgroundTint="#FDECEC"
+                android:tag="="/>
         </LinearLayout>
 
     </LinearLayout>
