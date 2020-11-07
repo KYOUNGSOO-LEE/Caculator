@@ -89,7 +89,7 @@
                 android:tag="back_space"/>
 
             <ImageButton
-                android:id="@+id/division_button"
+                android:id="@+id/operator_button_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -97,7 +97,7 @@
                 android:src="@drawable/ic_twotone_pie_chart_24"
                 android:padding="20dp"
                 android:backgroundTint="#FDECEC"
-                android:tag="/"/>
+                android:tag="/" />
 
         </LinearLayout>
 
@@ -109,7 +109,7 @@
             android:weightSum="100">
 
             <ImageButton
-                android:id="@+id/num_7_button"
+                android:id="@+id/num_button_7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -118,7 +118,7 @@
                 android:tag="7"/>
 
             <ImageButton
-                android:id="@+id/num_8_button"
+                android:id="@+id/num_button_8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -127,7 +127,7 @@
                 android:tag="8"/>
 
             <ImageButton
-                android:id="@+id/num_9_button"
+                android:id="@+id/num_button_9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -136,7 +136,7 @@
                 android:tag="9"/>
 
             <ImageButton
-                android:id="@+id/multiply_button"
+                android:id="@+id/operator_button_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -155,7 +155,7 @@
             android:weightSum="100">
 
             <ImageButton
-                android:id="@+id/num_4_button"
+                android:id="@+id/num_button_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -164,7 +164,7 @@
                 android:tag="4"/>
 
             <ImageButton
-                android:id="@+id/num_5_button"
+                android:id="@+id/num_button_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -173,7 +173,7 @@
                 android:tag="5"/>
 
             <ImageButton
-                android:id="@+id/num_6_button"
+                android:id="@+id/num_button_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -182,7 +182,7 @@
                 android:tag="6"/>
 
             <ImageButton
-                android:id="@+id/subtraction_button"
+                android:id="@+id/operator_button_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -201,7 +201,7 @@
             android:weightSum="100">
 
             <ImageButton
-                android:id="@+id/num_1_button"
+                android:id="@+id/num_button_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -210,7 +210,7 @@
                 android:tag="1"/>
 
             <ImageButton
-                android:id="@+id/num_2_button"
+                android:id="@+id/num_button_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -219,7 +219,7 @@
                 android:tag="2"/>
 
             <ImageButton
-                android:id="@+id/num_3_button"
+                android:id="@+id/num_button_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -228,7 +228,7 @@
                 android:tag="3"/>
 
             <ImageButton
-                android:id="@+id/addition_button"
+                android:id="@+id/operator_button_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
@@ -247,7 +247,7 @@
             android:weightSum="100">
 
             <ImageButton
-                android:id="@+id/num_0_button"
+                android:id="@+id/num_button_0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
@@ -261,11 +261,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="25"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_twotone_filter_tilt_shift_24"
-                android:tag="decimal"/>
+                android:src="@drawable/ic_baseline_fiber_manual_record_24"
+                android:padding="38dp"
+                android:tag="."/>
 
             <ImageButton
-                android:id="@+id/result_button"
+                android:id="@+id/operator_button_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="25"
