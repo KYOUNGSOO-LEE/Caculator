@@ -13,10 +13,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     boolean isFirstInput = true; // 입력값이 처음 입력되는가를 체크
-    int resultNumber = 0; // 계산된 결과 값을 저장하는 변수
-    char operator = '+'; // 입력된 연산자를 저장하는 변수
-
-    final String CLEAR_INPUT_TEXT = "0";
 
     ScrollView scrollView;
     TextView resultOperatorTextView;
@@ -111,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void allClearButtonClick(View view) {
+        isFirstInput = true;
+        resultTextView.setTextColor(0xFF666666);
+        resultTextView.setText("0");
     }
 
     private void operatorButtonClick(View view) {
