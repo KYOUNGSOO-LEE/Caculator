@@ -1,14 +1,19 @@
 package com.ksteach81.caculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton[] numberButton = new ImageButton[10];
     ImageButton[] operatorButton = new ImageButton[5];
 
-    Calculator calculator = new Calculator();
+    Calculator calculator = new Calculator(new DecimalFormat("###,###.##########"));
 
 
     @Override
@@ -98,21 +103,64 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void decimalButtonClick(View view) {
+        if(isFirstInput){
+            resultTextView.setTextColor(0xFF000000);
+            resultTextView.setText("0.");
+            isFirstInput = false;
+        } else {
+            if(resultTextView.getText().toString().contains(".")) {
+                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+            } else {
+                resultTextView.append(".");
+            }
+        }
     }
 
     private void backSpaceButtonClick(View view) {
+        if (isFirstInput && !calculator.getOperatorString().equals("")) {
+            Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+        } else {
+            if(resultTextView.getText().toString().length() > 1) {
+                String getResultString = resultTextView.getText().toString().replace(",", "");
+                String subString = getResultString.substring(0, getResultString.length() - 1);
+                String decimalString = calculator.getDecimalString(subString);
+                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O){
+                    resultTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,getStringSize(decimalString));
+                }
+                resultTextView.setText(decimalString);
+            } else {
+                clearText();
+            }
+        }
     }
 
     private void clearEntryButtonClick(View view) {
+        clearText();
     }
 
     private void allClearButtonClick(View view) {
+        calculator.setAllClear();
+        resultOperatorTextView.setText(calculator.getOperatorString());
+        clearText();
+    }
+
+    private void clearText() {
         isFirstInput = true;
         resultTextView.setTextColor(0xFF666666);
-        resultTextView.setText("0");
+        resultTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
+        resultTextView.setText(calculator.getClearInputText());
     }
 
     private void operatorButtonClick(View view) {
+        String getResultString = resultTextView.getText().toString();
+        String operator = view.getTag().toString();
+        String getResult = calculator.getResult(isFirstInput, getResultString, operator);
+        resultTextView.setText(getResult);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O){
+            resultTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,getStringSize(getResult));
+        }
+        resultOperatorTextView.setText(calculator.getOperatorString());
+        isFirstInput = true;
     }
 
     private void numberButtonClick(View view) {
@@ -122,108 +170,32 @@ public class MainActivity extends AppCompatActivity {
             isFirstInput = false;
         } else {
             String getResultText = resultTextView.getText().toString().replace(",","");
-            getResultText = getResultText + view.getTag().toString();
-            String getDecimalString = calculator.getDecimalString(getResultText);
-            resultTextView.setText(getDecimalString);
+            if(getResultText.length() > 15){
+                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+            } else {
+                getResultText = getResultText + view.getTag().toString();
+                String getDecimalString = calculator.getDecimalString(getResultText);
+                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O){
+                    resultTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,getStringSize(getDecimalString));
+                }
+                resultTextView.setText(getDecimalString);
+            }
         }
     }
 
-//    //AC, CE, BE, decimal button click되었을 때 실행되는 메소드
-//    public void buttonClick(View view) {
-//
-//        switch (view.getId()){
-//            case R.id.all_clear_button:
-//                resultNumber = 0;
-//                operator = '+';
-//                setClearText(CLEAR_INPUT_TEXT);
-//                break;
-//
-//            case R.id.clear_entry_button:
-//                setClearText(CLEAR_INPUT_TEXT);
-//                break;
-//
-//            case R.id.back_space_button:
-//                if(resultText.getText().toString().length() > 1){
-//                    String getResultText = resultText.getText().toString();
-//                    String subString = getResultText.substring(0, getResultText.length()-1);
-//                    resultText.setText(subString);
-//                } else {
-//                    setClearText(CLEAR_INPUT_TEXT);
-//                }
-//                break;
-//
-//            case R.id.decimal_button:
-//                break;
-//        }
-//    }
-//
-//    //입력된 숫자를 클리어 시켜 주는 메소드
-//    public void setClearText(String clearText){
-//        isFirstInput = true;
-//        resultText.setTextColor(0xFF666666);
-//        resultText.setText(clearText);
-//    }
-//
-//    // 숫자 버튼이 클릭되었을 때 실행되는 메소드
-//    public void numButtonClick(View view){
-//        Button getButton = findViewById(view.getId());
-//
-//        if(isFirstInput){
-//            resultText.setTextColor(0xFF000000);
-//            resultText.setText(getButton.getText().toString());
-//            isFirstInput = false;
-//        } else {
-//            if(resultText.getText().toString().equals("0")){
-//                Toast.makeText(getApplicationContext(), "0으로 시작하는 정수는 없습니다.", Toast.LENGTH_SHORT).show();
-//                setClearText(CLEAR_INPUT_TEXT);
-//            } else {
-//                resultText.append(getButton.getText().toString());
-//            }
-//        }
-//    }
-//
-//    //연산자를 클릭하였을 때 실행되는 메소드
-//    public void operatorClick(View view){
-//        Button getButton = findViewById(view.getId());
-//
-//        if(view.getId() == R.id.result_button){
-//            if(isFirstInput){
-//                resultNumber = 0;
-//                operator = '+';
-//                setClearText(CLEAR_INPUT_TEXT);
-//                // TODO: 2020-11-01 다음에 실수형 계산기 만들 때 윈도우 계산기처럼 =을 두 번 이상 누를 때 실행방법과 같이 구현할 것!
-//            } else{
-//                resultNumber = intCal(resultNumber, Integer.parseInt(resultText.getText().toString()), operator);
-//                resultText.setText(String.valueOf(resultNumber));
-//                isFirstInput = true;
-//            }
-//        } else{
-//            if(isFirstInput){
-//                operator = getButton.getText().toString().charAt(0);
-//            } else{
-//                int lastNum = Integer.parseInt(resultText.getText().toString());
-//                resultNumber = intCal(resultNumber, lastNum, operator);
-//                operator = getButton.getText().toString().charAt(0);
-//                resultText.setText(String.valueOf(resultNumber));
-//                isFirstInput = true;
-//            }
-//        }
-//    }
-//
-//    // 연산자를 계산하는 메소드
-//    public int intCal(int result, int lastNum, char operator){
-//        if(operator == '+') {
-//            result += lastNum;
-//        } else if(operator == '-' ){
-//            result -= lastNum;
-//        } else if(operator == '/'){
-//            result /= lastNum;
-//        } else if(operator == '*'){
-//            result *= lastNum;
-//        }
-//        return result;
-//    }
-
+    private int getStringSize(String getDecimalString) {
+        if(getDecimalString.length() > 30) {
+            return 25;
+        }
+        else if(getDecimalString.length() > 25) {
+            return 30;
+        } else if(getDecimalString.length() > 20) {
+            return 35;
+        } else if(getDecimalString.length() > 15) {
+            return 40;
+        }
+        return 50;
+    }
 }
 
 
